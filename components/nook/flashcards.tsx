@@ -49,189 +49,24 @@ export type FlashcardDeck = {
   updatedAt: number
 }
 
-const DEFAULT_DECKS: FlashcardDeck[] = [
-  {
-    id: 'deck-japanese',
-    title: 'Everyday Japanese Phrases',
-    description: 'Polite greetings and warm daily expressions to remember.',
-    category: 'Languages',
-    color: 'bg-accent',
-    createdAt: 1710000000000,
-    updatedAt: 1710000000000,
-    cards: [
-      {
-        id: 'jp-1',
-        front: 'Arigatou gozaimasu\n(ありがとうございます)',
-        back: 'Thank you very much (polite and respectful)',
-        hint: 'Use this whenever someone helps you or serves you coffee.',
-        mastered: true,
-        needsReview: false,
-        reviewCount: 3,
-        correctCount: 3,
-        lastReviewedAt: 1710000000000,
-      },
-      {
-        id: 'jp-2',
-        front: 'Konnichiwa\n(こんにちは)',
-        back: 'Hello / Good afternoon',
-        hint: 'Common greeting used from midday until late afternoon.',
-        mastered: true,
-        needsReview: false,
-        reviewCount: 2,
-        correctCount: 2,
-        lastReviewedAt: 1710000000000,
-      },
-      {
-        id: 'jp-3',
-        front: 'Itadakimasu\n(いただきます)',
-        back: 'Grateful phrase said before eating meals (literally "I humbly receive")',
-        hint: 'Put your hands together before your meal or warm pastry.',
-        mastered: false,
-        needsReview: true,
-        reviewCount: 1,
-        correctCount: 0,
-        lastReviewedAt: 1710000000000,
-      },
-      {
-        id: 'jp-4',
-        front: 'Otsukaresama desu\n(お疲れ様です)',
-        back: 'Thank you for your hard work / Good job today',
-        hint: 'Said to coworkers or study buddies after finishing a long session.',
-        mastered: false,
-        needsReview: false,
-        reviewCount: 0,
-        correctCount: 0,
-      },
-      {
-        id: 'jp-5',
-        front: 'Gochisousama deshita\n(ごちそうさまでした)',
-        back: 'Thank you for the delicious meal (said right after eating)',
-        hint: 'Polite way to thank the host or chef.',
-        mastered: false,
-        needsReview: true,
-        reviewCount: 2,
-        correctCount: 1,
-        lastReviewedAt: 1710000000000,
-      },
-      {
-        id: 'jp-6',
-        front: 'Daijoubu desu\n(大丈夫です)',
-        back: "It's all right / I'm okay / No problem",
-        hint: 'Can be used to say "no thank you, I\'m good" or "everything is fine".',
-        mastered: true,
-        needsReview: false,
-        reviewCount: 2,
-        correctCount: 2,
-        lastReviewedAt: 1710000000000,
-      },
-    ],
-  },
-  {
-    id: 'deck-coffee',
-    title: 'Cozy Coffee Brewing Notes',
-    description: 'Golden brewing ratios, ideal temperatures, and pour-over secrets.',
-    category: 'Cozy Hobbies',
-    color: 'bg-secondary',
-    createdAt: 1710001000000,
-    updatedAt: 1710001000000,
-    cards: [
-      {
-        id: 'cf-1',
-        front: 'What is the standard brew ratio for pour-over coffee (V60 / Kalita)?',
-        back: '1:15 to 1:16\n(e.g., 15 grams of freshly ground coffee to 240g of hot water)',
-        hint: 'Think about 15 to 16 parts water per 1 part coffee beans.',
-        mastered: true,
-        needsReview: false,
-        reviewCount: 2,
-        correctCount: 2,
-        lastReviewedAt: 1710000000000,
-      },
-      {
-        id: 'cf-2',
-        front: "What is the 'bloom' phase in pour-over coffee?",
-        back: 'The initial pour of hot water (about 2x coffee weight, ~45-60g) left to sit for 30–45 seconds to release trapped carbon dioxide gas and ensure even extraction.',
-        hint: 'Watch the coffee bed swell up and release sweet aromas.',
-        mastered: false,
-        needsReview: false,
-        reviewCount: 0,
-        correctCount: 0,
-      },
-      {
-        id: 'cf-3',
-        front: 'What water temperature is ideal for brewing specialty coffee?',
-        back: '90°C to 96°C (195°F to 205°F) — roughly 30 to 45 seconds off the rolling boil.',
-        hint: 'Boiling water (100°C) can scorch grounds and cause bitter astringency.',
-        mastered: false,
-        needsReview: true,
-        reviewCount: 1,
-        correctCount: 0,
-        lastReviewedAt: 1710000000000,
-      },
-      {
-        id: 'cf-4',
-        front: 'How should whole coffee beans be stored for maximum freshness?',
-        back: 'In an airtight, opaque container stored at room temperature in a cool, dark cupboard away from moisture and direct sunlight.',
-        hint: 'Avoid keeping your daily beans in the refrigerator due to condensation.',
-        mastered: true,
-        needsReview: false,
-        reviewCount: 1,
-        correctCount: 1,
-        lastReviewedAt: 1710000000000,
-      },
-    ],
-  },
-  {
-    id: 'deck-productivity',
-    title: 'Mindful Focus & Habits',
-    description: 'Calm frameworks for staying focused and gentle with your energy.',
-    category: 'Study & Work',
-    color: 'bg-accent',
-    createdAt: 1710002000000,
-    updatedAt: 1710002000000,
-    cards: [
-      {
-        id: 'pd-1',
-        front: 'What is the classic Pomodoro Technique interval?',
-        back: '25 minutes of undistracted focus followed by a 5-minute restful break. After 4 cycles, take a longer 15–30 minute break.',
-        hint: 'Work in cozy bursts, not marathons.',
-        mastered: true,
-        needsReview: false,
-        reviewCount: 2,
-        correctCount: 2,
-        lastReviewedAt: 1710000000000,
-      },
-      {
-        id: 'pd-2',
-        front: "What is the 'Two-Minute Rule'?",
-        back: 'If an incoming task takes less than two minutes to complete (like answering a quick note or watering a plant), do it immediately instead of scheduling it.',
-        hint: 'Keeps small chores from piling into big mental burdens.',
-        mastered: false,
-        needsReview: false,
-        reviewCount: 0,
-        correctCount: 0,
-      },
-      {
-        id: 'pd-3',
-        front: "What is 'Time Blocking'?",
-        back: 'A scheduling strategy where you dedicate specific uninterrupted blocks of time to single tasks or themes, reducing the cost of context switching.',
-        hint: 'Give each priority its own comfortable home on your calendar.',
-        mastered: true,
-        needsReview: false,
-        reviewCount: 1,
-        correctCount: 1,
-        lastReviewedAt: 1710000000000,
-      },
-    ],
-  },
-]
-
 type ActiveView =
   | { mode: 'list' }
   | { mode: 'manage'; deckId: string }
   | { mode: 'study'; deckId: string; onlyReview: boolean }
 
+const STARTER_DECK_IDS = new Set(['deck-japanese', 'deck-coffee', 'deck-productivity'])
+
 export function Flashcards() {
-  const [decks, setDecks, hydrated] = usePersistentState<FlashcardDeck[]>('flashcards-decks', DEFAULT_DECKS)
+  const [decks, setDecks, hydrated] = usePersistentState<FlashcardDeck[]>('flashcards-decks', [])
+
+  // Remove any previously saved starter decks from localStorage
+  useEffect(() => {
+    if (!hydrated) return
+    setDecks((prev) => {
+      const hasStarter = prev.some((d) => STARTER_DECK_IDS.has(d.id))
+      return hasStarter ? prev.filter((d) => !STARTER_DECK_IDS.has(d.id)) : prev
+    })
+  }, [hydrated, setDecks])
   const [view, setView] = useState<ActiveView>({ mode: 'list' })
   const [searchQuery, setSearchQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState<string>('all')
@@ -348,19 +183,6 @@ export function Flashcards() {
     )
   }
 
-  const handleResetSampleDecks = () => {
-    const confirmReset = window.confirm(
-      'Reset and restore the default cozy study decks (Japanese, Coffee, Focus)? Your custom decks will be kept.',
-    )
-    if (!confirmReset) return
-
-    setDecks((prev) => {
-      const existingIds = new Set(prev.map((d) => d.id))
-      const toAdd = DEFAULT_DECKS.filter((d) => !existingIds.has(d.id))
-      return [...toAdd, ...prev]
-    })
-  }
-
   // Active view router
   if (view.mode === 'study' && activeDeck) {
     return (
@@ -434,11 +256,6 @@ export function Flashcards() {
             <NookButton onClick={() => setIsCreatingDeck((v) => !v)}>
               <Plus /> New Deck
             </NookButton>
-            {decks.length === 0 && (
-              <NookButton variant="secondary" onClick={handleResetSampleDecks}>
-                <Sparkles /> Restore Samples
-              </NookButton>
-            )}
           </div>
         </div>
 
@@ -539,13 +356,10 @@ export function Flashcards() {
           >
             {searchQuery
               ? 'Try searching with a different keyword or select another category.'
-              : 'Create your first flashcard deck above or restore sample decks to start studying!'}
-            <div className="mt-4 flex justify-center gap-2">
+              : 'Create your first flashcard deck above to start studying!'}
+            <div className="mt-4 flex justify-center">
               <NookButton size="sm" onClick={() => setIsCreatingDeck(true)}>
                 <Plus /> Create Deck
-              </NookButton>
-              <NookButton variant="secondary" size="sm" onClick={handleResetSampleDecks}>
-                <Sparkles /> Restore Samples
               </NookButton>
             </div>
           </EmptyState>
