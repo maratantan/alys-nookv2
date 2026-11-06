@@ -8,7 +8,7 @@ const bagel = Bagel_Fat_One({ subsets: ['latin'], weight: '400', variable: '--fo
 export const metadata: Metadata = {
   title: "Aly's Nook - a cozy little productivity corner",
   description:
-    'A cozy productivity nook with a Pomodoro timer, to-do list, flashcards, video playlists, and a personal document shelf.',
+    'A cozy productivity nook with a Pomodoro timer, ambient focus sounds mixer, to-do list, flashcards, video playlists, and a personal document shelf.',
   generator: 'v0.app',
   icons: {
     icon: [

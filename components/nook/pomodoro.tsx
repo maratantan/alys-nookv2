@@ -5,6 +5,7 @@ import { Coffee, Leaf, Minus, Pause, Play, Plus, RotateCcw, Settings2, SkipForwa
 import { localDateString, usePersistentState } from '@/lib/use-persistent-state'
 import { cn } from '@/lib/utils'
 import { IconBlob, NookButton, Panel, PillToggle } from './ui'
+import { FocusMixer } from './focus-mixer'
 
 type Mode = 'focus' | 'short' | 'long'
 
@@ -137,7 +138,8 @@ export function Pomodoro() {
   const circumference = 2 * Math.PI * radius
 
   return (
-    <div className="grid gap-5 lg:grid-cols-[1fr_320px]">
+    <div className="flex flex-col gap-5">
+      <div className="grid gap-5 lg:grid-cols-[1fr_320px]">
       <Panel className="flex flex-col items-center gap-6 py-8">
         <div role="tablist" aria-label="Timer mode" className="flex flex-wrap justify-center gap-2">
           {MODES.map((m) => (
@@ -289,6 +291,8 @@ export function Pomodoro() {
           </div>
         </Panel>
       </div>
+      </div>
+      <FocusMixer />
     </div>
   )
 }

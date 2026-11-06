@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { BookOpen, Clapperboard, FolderHeart, ListChecks, Timer, type LucideIcon } from 'lucide-react'
+import { BookOpen, Clapperboard, FolderHeart, ListChecks, Timer, Volume2, VolumeX, type LucideIcon } from 'lucide-react'
+import { SoundMixerProvider, useSoundMixer } from '@/lib/sound-mixer-context'
 import { usePersistentState } from '@/lib/use-persistent-state'
 import { cn } from '@/lib/utils'
 import { Documents } from './documents'
@@ -44,9 +45,11 @@ function Logo() {
   )
 }
 
-export function NookApp() {
+function NookInner() {
   const [active, setActive] = usePersistentState<SectionId>('active-section', 'timer')
+  const { isPlaying, activeCount, playAll, pauseAll, activePresetId, presets } = useSoundMixer()
   const current = SECTIONS.find((s) => s.id === active) ?? SECTIONS[0]
+  const activePreset = presets.find((p) => p.id === activePresetId)
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-7xl gap-6 px-4 pb-28 pt-4 sm:px-6 lg:pb-8 lg:pt-6">
@@ -93,6 +96,26 @@ export function NookApp() {
             )
           })}
         </nav>
+        {activeCount > 0 && (
+          <div className="sketch-sm flex flex-col gap-1.5 bg-card p-3">
+            <div className="flex items-center justify-between">
+              <span className="flex items-center gap-1.5 text-xs font-bold text-foreground">
+                <Volume2 className={cn('size-3.5', isPlaying && 'text-primary animate-pulse')} />
+                {activePreset ? activePreset.name : 'Soundscape'}
+              </span>
+              <button
+                type="button"
+                onClick={isPlaying ? pauseAll : playAll}
+                className="cursor-pointer text-[11px] font-bold text-primary hover:underline"
+              >
+                {isPlaying ? 'Pause' : 'Resume'}
+              </button>
+            </div>
+            <p className="text-[11px] font-semibold text-muted-foreground">
+              {isPlaying ? `${activeCount} active sounds` : 'Soundscape paused'}
+            </p>
+          </div>
+        )}
         <p className="mt-auto px-2 text-xs font-semibold text-muted-foreground">
           Everything is saved privately in this browser.
         </p>
@@ -112,8 +135,29 @@ export function NookApp() {
               <p className="hidden text-sm font-semibold text-muted-foreground sm:block">{current.subtitle}</p>
             </div>
           </div>
-          <div className="hidden sm:block lg:hidden">
-            <Logo />
+          <div className="flex items-center gap-2">
+            {activeCount > 0 && (
+              <button
+                type="button"
+                onClick={isPlaying ? pauseAll : playAll}
+                className={cn(
+                  'sketch-sm flex cursor-pointer items-center gap-2 px-2.5 py-1 text-xs font-bold transition-all sm:px-3 sm:py-1.5',
+                  isPlaying ? 'bg-primary text-primary-foreground' : 'bg-card text-foreground hover:bg-secondary',
+                )}
+                title={isPlaying ? 'Pause ambient focus sounds' : 'Resume ambient focus sounds'}
+              >
+                {isPlaying ? <Volume2 className="size-4 animate-pulse" /> : <VolumeX className="size-4" />}
+                <span className="hidden sm:inline">
+                  {isPlaying ? (activePreset ? activePreset.name : 'Soundscape') : 'Soundscape Paused'}
+                </span>
+                <span className="blob flex size-4 items-center justify-center border border-border bg-card text-[10px] text-foreground">
+                  {activeCount}
+                </span>
+              </button>
+            )}
+            <div className="hidden sm:block lg:hidden">
+              <Logo />
+            </div>
           </div>
         </header>
 
@@ -157,5 +201,13 @@ export function NookApp() {
         })}
       </nav>
     </div>
+  )
+}
+
+export function NookApp() {
+  return (
+    <SoundMixerProvider>
+      <NookInner />
+    </SoundMixerProvider>
   )
 }
