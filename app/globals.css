@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-nunito), ui-rounded, system-ui, sans-serif;
+  --font-display: var(--font-bagel), var(--font-nunito), system-ui, sans-serif;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  color-scheme: light;
+  --background: #f3e6d0;
+  --foreground: #4a2f22;
+  --card: #fff8ec;
+  --card-foreground: #4a2f22;
+  --popover: #fff8ec;
+  --popover-foreground: #4a2f22;
+  --primary: #c27c43;
+  --primary-foreground: #fff8ec;
+  --secondary: #ebd7b8;
+  --secondary-foreground: #4a2f22;
+  --muted: #efe0c6;
+  --muted-foreground: #85634d;
+  --accent: #f3c79c;
+  --accent-foreground: #4a2f22;
+  --destructive: #b0503a;
+  --border: #4a2f22;
+  --input: #4a2f22;
+  --ring: #c27c43;
+  --radius: 1rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    background-color: var(--background);
+  }
+  body {
+    @apply bg-background font-sans text-foreground;
+    background-image: radial-gradient(color-mix(in oklab, var(--foreground) 14%, transparent) 1px, transparent 1.4px);
+    background-size: 22px 22px;
+  }
+  ::selection {
+    background: var(--accent);
+  }
+}
+
+@layer components {
+  .sketch {
+    border: 2px solid var(--border);
+    border-radius: 22px 28px 20px 30px / 28px 20px 30px 22px;
+    box-shadow: 3px 4px 0 var(--border);
+  }
+  .sketch-sm {
+    border: 2px solid var(--border);
+    border-radius: 14px 17px 13px 18px / 17px 13px 18px 14px;
+    box-shadow: 2px 2px 0 var(--border);
+  }
+  .sketch-sm:active {
+    box-shadow: 0 0 0 var(--border);
+  }
+  .blob {
+    border-radius: 58% 42% 55% 45% / 48% 58% 42% 52%;
+  }
+  .squiggle {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='8' viewBox='0 0 24 8'%3E%3Cpath d='M0 4 Q 6 0 12 4 T 24 4' fill='none' stroke='%23c27c43' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-size: 24px 8px;
+    height: 8px;
+  }
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}
